@@ -17,17 +17,16 @@ class CheckSSOToken
         $ssoTokenCookie = $request->cookie('sso_token');
         $ssoEmail  = $request->cookie('sso_email');
 
-        if (!$ssoTokenCookie && Auth::check()) {
+        if (Auth::check() && !$ssoTokenCookie) {
             Auth::logout();
+            // dd($ssoTokenCookie);
+
             $request->session()->invalidate();
             $request->session()->regenerateToken();
         }
 
-
+        // Food Panda
         if (!Auth::check()) {
-            $ssoTokenCookie = $request->cookie('sso_token');
-            $ssoEmail  = $request->cookie('sso_email');
-
             if ($ssoTokenCookie && $ssoEmail) {
                 $parts = explode('|', $ssoTokenCookie);
                 $plainToken = $parts[1] ?? null;
