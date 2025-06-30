@@ -10,24 +10,8 @@ use App\Models\User;
 
 class SSOController extends Controller
 {
-    // public function redirectToFoodpanda(Request $request)
-    // {
-    //     $user = Auth::user();
-
-    //     $token = $user->createToken('SSO-Token')->plainTextToken;
-    //     $redirectToUrl = config('app.sso_redirect_url').'/sso-foodpanda-login';
-    //     $redirectBackUrl = config('app.url').'/dashboard';
-    //     $response = Http::withToken($token)->post('http://127.0.0.1:8001/api/cross-login', [
-    //         'email' => $user->email
-    //     ]);
-
-    //     return redirect()->away("$redirectToUrl?token={$token}&email={$user->email}&redirect_back={$redirectBackUrl}");
-    // }
-
-
     public function crossLogin(Request $request)
     {
-
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {

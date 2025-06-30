@@ -53,6 +53,8 @@ return [
     */
 
     'url' => env('APP_URL', 'http://localhost'),
+    'sso_redirect_url' => env('SSO_REDIRECT_URL', 'http://localhost'),
+
 
     /*
     |--------------------------------------------------------------------------

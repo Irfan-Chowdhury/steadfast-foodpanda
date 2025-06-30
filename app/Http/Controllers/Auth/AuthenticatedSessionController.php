@@ -69,8 +69,9 @@ class AuthenticatedSessionController extends Controller
 
         $user->tokens()->where('token', $hashedToken)->delete();
 
+        $redirectToUrl = config('app.sso_redirect_url');
 
-        Http::post('http://127.0.0.1:8000/api/sso-logout', [
+        Http::post("$redirectToUrl/api/sso-logout", [
             'email' => $request->user()->email,
             'token' => $request->cookie('sso_token'),
         ]);

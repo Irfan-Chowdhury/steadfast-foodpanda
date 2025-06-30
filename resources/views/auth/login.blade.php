@@ -89,10 +89,6 @@
 
                     <button type="submit" class="btn btn-success btn-block">Login</button>
                 </form>
-
-                <div class="text-center mt-3">
-                    Don't have an account? <a href="/register">Register here</a>
-                </div>
             </div>
         </div>
     </div>
