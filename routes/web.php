@@ -16,11 +16,13 @@ Route::get('/check', function () {
 });
 
 Route::get('/', function () {
-    return view('welcome');
+    return Auth::check()
+        ? redirect()->back()   // if logged in
+        : redirect()->route('login');      // if guest
 });
 
 Route::middleware('sso.auth')->group(function () {
     Route::get('/dashboard', function () {
         return view('admin.pages.dashboard');
-    })->middleware(['auth', 'verified'])->name('dashboard');
+    })->middleware(['auth'])->name('dashboard');
 });
